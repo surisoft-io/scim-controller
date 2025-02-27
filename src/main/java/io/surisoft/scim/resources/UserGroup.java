@@ -10,12 +10,6 @@ import java.io.Serializable;
 @XmlType(propOrder = {"value","ref","display","type"})
 @XmlAccessorType(XmlAccessType.NONE)
 public class UserGroup implements Serializable {
-  @XmlEnum
-  public enum Type {
-    @XmlEnumValue("direct") DIRECT,
-    @XmlEnumValue("indirect") INDIRECT;
-  }
-  
   @ScimAttribute(description="The identifier of the User's group.",
     mutability = Schema.Attribute.Mutability.READ_ONLY)
   @ScimResourceIdReference
@@ -37,7 +31,7 @@ public class UserGroup implements Serializable {
     canonicalValueList={"direct", "indirect"},
     mutability = Schema.Attribute.Mutability.READ_ONLY)
   @XmlElement
-  private Type type;
+  private String type;
 
   public String getValue() {
     return value;
@@ -63,11 +57,11 @@ public class UserGroup implements Serializable {
     this.display = display;
   }
 
-  public Type getType() {
+  public String getType() {
     return type;
   }
 
-  public void setType(Type type) {
+  public void setType(String type) {
     this.type = type;
   }
 }
